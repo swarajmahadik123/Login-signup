@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './utils/Context';
 
 const Header = () => {
+  const {isLoggedIn,setIsLoggedIn}=useContext(AuthContext);
   return (
+    
     <div>
       <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
         <Link className="text-3xl font-bold leading-none" to="/home">
@@ -11,8 +14,19 @@ const Header = () => {
           </svg>
         </Link>
         <div className="flex items-center space-x-3 mx-10">
+          {!isLoggedIn? (<>
           <Link  className="py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" to="/login">Sign In</Link>
           <Link className="py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" to="/signup">Sign Up</Link>
+          </>) : 
+          (
+            <>
+              <Link className="py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" to="/home">Home</Link>
+              <Link className="py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" to="/about-us">About Us</Link>
+              <Link className="py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" to="/contact">Contact</Link>
+            </>
+          )
+          
+          }
         </div>
       </nav>
     </div>

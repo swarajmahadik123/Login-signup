@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from "./components/Home.jsx";
 import FrontPage from "./components/FrontPage.jsx";
+import { AuthProvider } from "./components/utils/Context.js";
 
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
 
   return (
     <>
+    <AuthProvider>
     <BrowserRouter>
-    
       <Header />
       <Routes>
         <Route path="/" element={<FrontPage/>} />
@@ -23,6 +24,7 @@ function App() {
       </Routes>
       <Footer/>
     </BrowserRouter>
+    </AuthProvider>
     </>
   )
 }
